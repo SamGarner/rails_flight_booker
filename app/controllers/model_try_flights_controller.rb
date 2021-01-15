@@ -1,15 +1,13 @@
 class FlightsController < ApplicationController
   def index
-    # @flights = Flight.search(params[:departure_id], params[:arrival_id])
+    # @flights = Flight.search(params[:departure_id]) #, params[:arrival_id], 
+                # params[:take_off], params[:passenger_count]])
+    
+    # @flights = Flight.search(params[:departure_id])
+   # allowed_flight_params ? Flight.search(allowed_flight_params) : Flight.all
+    # @flights = Flight.search(allowed_flight_params)
 
-    if params[:departure_id] || params[:arrival_id]
-      @flights = Flight.search(params[:departure_id], params[:arrival_id])
-
-      # @flights = []
-      # @flights << Flight.first
-    else @flights = Flight.all 
-    end
-
+    @flights = Flight.search(params[:departure_id], params[:arrival_id])
     @departure_options = Flight.all.map { |d| [d.departure.city, d.departure_id] }
     @arrival_options = Flight.all.map { |a| [a.arrival.city, a.arrival_id] }
     @date_options = Flight.all.map { |date| [date.formatted_date, date] }

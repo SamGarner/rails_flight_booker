@@ -8,21 +8,12 @@ class Flight < ApplicationRecord
     datetime.strftime('%F at %H:%M')
   end
 
-  def self.search(allowed_flight_params)
-    # flight_params = [departure_id, arrival_id, take_off, passenger_count]
-    
-    # if allowed_flight_params == []
-    #   @flights = Flight.all
-    # else
-
-      # @flights = Flight.where('departure_id = ? AND arrival_id = ? AND take_off = ?
-      #   AND passenger_count = ?', params[:departure_id], params[:arrival_id], 
-      #   params[:take_off], params[:passenger_count])
-      
-      # @flights = Flight.where('departure_id = ?', params[:departure_id])
-      @flights = []
-      @flights << Flight.find_by(departure_id: allowed_flight_params)
-      @flights = @flights || Flight.all
-    # end
+  def self.search(departure_id, arrival_id)
+      # if departure_id.nil? && arrival_id.nil?
+      #   @flights = Flight.all
+      # else
+        @flights = []
+        @flights << Flight.where('departure_id = ? AND arrival_id = ?', departure_id, arrival_id).first
+      # end
   end
 end
