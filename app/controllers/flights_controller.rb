@@ -15,7 +15,7 @@ class FlightsController < ApplicationController
 
     @departure_options = Flight.all.map { |d| [d.departure.city, d.departure_id] }
     @arrival_options = Flight.all.map { |a| [a.arrival.city, a.arrival_id] }
-    @date_options = Flight.all.map { |date| [date.formatted_date, date] }
+    @date_options = Flight.all.map { |date| [date.drop_down_date, date] }.uniq { |d| d[0] }
     @passenger_count_options = [[1, 1], [2, 2], [3, 3], [4, 4]]
   end
 
