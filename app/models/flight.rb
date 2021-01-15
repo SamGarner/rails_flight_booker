@@ -5,7 +5,11 @@ class Flight < ApplicationRecord
   belongs_to :arrival, class_name: 'Airport'
 
   def formatted_date(datetime = take_off)
-    datetime.strftime('%F at %H:%M')
+    datetime.strftime('%k:%M on %b %-d, %Y')
+  end
+
+  def drop_down_date(datetime = take_off)
+    datetime.strftime('%m/%d/%Y')
   end
 
   def self.search(departure_id, arrival_id)
