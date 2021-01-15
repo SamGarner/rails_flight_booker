@@ -12,8 +12,8 @@ class Flight < ApplicationRecord
       # if departure_id.nil? && arrival_id.nil?
       #   @flights = Flight.all
       # else
-        @flights = []
-        @flights << Flight.where('departure_id = ? AND arrival_id = ?', departure_id, arrival_id).first
+        # flights = []
+        flights = Flight.where('departure_id = ? AND arrival_id = ?', departure_id, arrival_id)
       # end
   end
 end

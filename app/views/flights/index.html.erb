@@ -14,7 +14,15 @@
   <%= form.submit "Search" %>
 <% end %>
 
+<%# select(:flight, :departure_id, @departure_options) %>
+<%# select_tag(:arrival_id, options_for_select(@arrival_options)) %>
+
+<%# @flights.departure.city %>
+<%# @flights.arrival.city %>
+<%# @flights.formatted_date %>
+
 <%# @flights %>
+<%# @flights.empty? %>
 <%# @flights.inspect %>
 <%# @flights.class %>
 <%# @flights[0] %>
@@ -22,11 +30,11 @@
 <%# @flights[0].class.nil? %>
 
 <p>
-  <% if @flights[0] == "nil" %>
+  <% if @flights.empty? %>
     No results match your search. Please try again.
   <% else %>  
     <% @flights.each do |flight| %>
-      <%= flight %><br>
+      <!-- <%= flight %><br> -->
       <%= return "No results match your search. Please try again" if flight.nil? %>
       <%= "Departs: #{flight.departure.city}" %><br>
       <%= "Arrives: #{flight.arrival.city}" %><br>

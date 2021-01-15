@@ -2,12 +2,14 @@ class FlightsController < ApplicationController
   def index
     # @flights = Flight.search(params[:departure_id], params[:arrival_id])
 
-    if params[:departure_id] || params[:arrival_id] || params[:take_off] || params[:passenger_count]
+    if params[:departure_id] || params[:arrival_id] #|| params[:take_off] || params[:passenger_count]
       # @flights = []
       @flights = Flight.search(params[:departure_id], params[:arrival_id])
-      @flights = @flights || Flight.all
+      # @flights = @flights || Flight.all
     else
-      @flights = Flight.all
+      # @flights = Flight.all
+      # @flights = Flight.new
+      @flights = []
     end
     # @flights = Flight.all
 
