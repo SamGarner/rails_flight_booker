@@ -5,11 +5,13 @@ class FlightsController < ApplicationController
     if params[:departure_id] || params[:arrival_id] || params[:take_off] || params[:passenger_count]
       # @flights = []
       @flights = Flight.search(params[:departure_id], params[:arrival_id], params[:take_off])
+      @passenger_count = params[:passenger_count]
       # @flights = @flights || Flight.all
     else
       # @flights = Flight.all
       # @flights = Flight.new
       @flights = []
+      @passenger_count = 0
     end
     # @flights = Flight.all
 
