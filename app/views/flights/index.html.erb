@@ -24,7 +24,7 @@
   <% if @flights.empty? %>
     No results match your search. Please try again.
   <% else %>
-    <%= form_with url: 'reservations/new', method: :get do |f| %>
+    <%= form_with url: 'bookings/new', method: :get do |f| %>
       <strong><%= @flights.first.drop_down_date %></strong><br>
       <%= "Number of passengers: #{ @passenger_count }" %><br>
       Flights available:<br><br>
