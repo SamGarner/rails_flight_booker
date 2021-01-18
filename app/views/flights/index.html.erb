@@ -29,11 +29,12 @@
       <%= "Number of passengers: #{ @passenger_count }" %><br>
       Flights available:<br><br>
       <% @flights.each do |flight| %>
-        <%= f.radio_button :flight, flight.id %>
+        <%= f.radio_button :flight_id, flight.id %>
         <%= flight.formatted_date.to_time.strftime('%H:%M') %><br>
         <%= "Departs: #{flight.departure.city}" %><br>
         <%= "Arrives: #{flight.arrival.city}" %><br>
         <%= "Duration: #{flight.duration} min" %><br><br>
+        <%= f.hidden_field :passenger_count, value: @passenger_count %>
       <% end %>
       <%= f.submit "Book flight" %>
     <% end %>
