@@ -1,8 +1,6 @@
 <h3><i>FlightBooker</i> - Available Flights</h3>
 
 <%= form_with model: @flight, method: :get do |form| %>
-  <%# form.label :notes, "Notes:" %>  
-  <%# form.text_field :notes %>
   <%= form.label :departure_id, "Departing:" %>
   <%= form.select(:departure_id, @departure_options) %>
   <%= form.label :arrival_id, "To:" %>  
@@ -14,13 +12,6 @@
   <%= form.submit "Search" %>
 <% end %>
 
-<%# select(:flight, :departure_id, @departure_options) %>
-<%# select_tag(:arrival_id, options_for_select(@arrival_options)) %>
-
-<%# @flights.departure.city %>
-<%# @flights.arrival.city %>
-<%# @flights.formatted_date %>
-
 <%# @flights %>
 <%# @flights.empty? %>
 <%# @flights.inspect %>
@@ -30,8 +21,6 @@
 <%# @flights[0].class.nil? %>
 
 <p>
-  <%# "Number of passengers: #{ @passenger_count }" %>
-  <!-- Flights available:<br><br> -->
   <% if @flights.empty? %>
     No results match your search. Please try again.
   <% else %>
@@ -49,5 +38,4 @@
       <%= f.submit "Book flight" %>
     <% end %>
   <% end %>
-
 </p>

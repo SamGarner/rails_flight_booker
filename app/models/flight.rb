@@ -17,12 +17,7 @@ class Flight < ApplicationRecord
   end
 
   def self.search(departure_id, arrival_id, date)
-      # if departure_id.nil? && arrival_id.nil?
-      #   @flights = Flight.all
-      # else
-        # flights = []
-        flights = Flight.where('departure_id = ? AND arrival_id = ? AND DATE(take_off) = ?',
-                               departure_id, arrival_id, date)
-      # end
+    Flight.where('departure_id = ? AND arrival_id = ? AND DATE(take_off) = ?',
+                 departure_id, arrival_id, date)
   end
 end
