@@ -1,8 +1,8 @@
 <h3><i>FlightBooker</i> - Available Flights</h3>
 
 <%= form_with model: @flight, method: :get do |form| %>
-  <%= form.label :notes, "Notes:" %>
-  <%= form.text_field :notes %>
+  <%# form.label :notes, "Notes:" %>  
+  <%# form.text_field :notes %>
   <%= form.label :departure_id, "Departing:" %>
   <%= form.select(:departure_id, @departure_options) %>
   <%= form.label :arrival_id, "To:" %>  
@@ -30,16 +30,24 @@
 <%# @flights[0].class.nil? %>
 
 <p>
-  <%= "Number of passengers: #{ @passenger_count }" %><br>
-  Flights available:<br><br>
+  <%# "Number of passengers: #{ @passenger_count }" %>
+  <!-- Flights available:<br><br> -->
   <% if @flights.empty? %>
     No results match your search. Please try again.
-  <% else %>  
-    <% @flights.each do |flight| %>
-      <%= flight.formatted_date %><br>
-      <%= "Departs: #{flight.departure.city}" %><br>
-      <%= "Arrives: #{flight.arrival.city}" %><br>
-      <%= "Duration: #{flight.duration} min" %><br><br>
+  <% else %>
+    <%= form_with url: 'reservations/new', method: :get do |f| %>
+      <strong><%= @flights.first.drop_down_date %></strong><br>
+      <%= "Number of passengers: #{ @passenger_count }" %><br>
+      Flights available:<br><br>
+      <% @flights.each do |flight| %>
+        <%= f.radio_button :flight, flight.id %>
+        <%= flight.formatted_date.to_time.strftime('%H:%M') %><br>
+        <%= "Departs: #{flight.departure.city}" %><br>
+        <%= "Arrives: #{flight.arrival.city}" %><br>
+        <%= "Duration: #{flight.duration} min" %><br><br>
+      <% end %>
+      <%= f.submit "Book flight" %>
     <% end %>
   <% end %>
+
 </p>
