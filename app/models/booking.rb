@@ -5,4 +5,6 @@ class Booking < ApplicationRecord
   has_many :passengers
   has_one :departure, through: :flight
   has_one :arrival, through: :flight
+
+  accepts_nested_attributes_for :passengers
 end
