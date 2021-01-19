@@ -21,9 +21,9 @@ Flight.create([{ id: 1, duration: 439, take_off: '2011-01-05 01:00:00 UTC', depa
                { id: 7, duration: 692, take_off: '2011-01-05 11:00:00 UTC', departure_id: 1, arrival_id: 5 }])
 
 Passenger.destroy_all # only since playground app
-Passenger.create([{ id: 1, name: 'Sam G', email: 'sam@g.com' }, { id: 2, name: 'Woodwick', email: 'wood@wick.com' }])
+Passenger.create([{ id: 1, name: 'Sam G', email: 'sam@g.com', booking_id: 1 }, { id: 2, name: 'Woodwick', email: 'wood@wick.com', booking_id: 2 }])
 
 Booking.destroy_all # only since playground app
-Booking.create([{ passenger_id: 1, flight_id: 1, confirmation_number: 'BD9F3Z' },
-                { passenger_id: 1, flight_id: 6, confirmation_number: '9GPFL0' },
-                { passenger_id: 2, flight_id: 1, confirmation_number: 'LR439C' }])
+Booking.create([{ id: 1, flight_id: 1, confirmation_number: 'BD9F3Z' },
+                #{ passenger_id: 1, flight_id: 6, confirmation_number: '9GPFL0' },
+                { id: 2, flight_id: 1, confirmation_number: 'LR439C' }])
