@@ -1,5 +1,9 @@
 <h3><i>FlightBooker</i> - Available Flights</h3>
 
+<% if flash[:success] %>
+  <i><%= flash[:success] %></i><br>
+<% end %>
+
 <%= form_with model: @flight, method: :get do |form| %>
   <%= form.label :departure_id, "Departing:" %>
   <%= form.select(:departure_id, @departure_options) %>
@@ -12,31 +16,27 @@
   <%= form.submit "Search" %>
 <% end %>
 
-<%# @flights %>
-<%# @flights.empty? %>
-<%# @flights.inspect %>
-<%# @flights.class %>
-<%# @flights[0] %>
-<%# @flights[0] == "[nil]" %>
-<%# @flights[0].class.nil? %>
-
-<p>
-  <% if @flights.empty? %>
-    No results match your search. Please try again.
-  <% else %>
-    <%= form_with url: 'bookings/new', method: :get do |f| %>
-      <strong><%= @flights.first.drop_down_date %></strong><br>
-      <%= "Number of passengers: #{ @passenger_count }" %><br>
-      Flights available:<br><br>
-      <% @flights.each do |flight| %>
-        <%= f.radio_button :flight_id, flight.id %>
-        <%= flight.formatted_date.to_time.strftime('%H:%M') %><br>
-        <%= "Departs: #{flight.departure.city}" %><br>
-        <%= "Arrives: #{flight.arrival.city}" %><br>
-        <%= "Duration: #{flight.duration} min" %><br><br>
-        <%= f.hidden_field :passenger_count, value: @passenger_count %>
+<% if flash[:notice] %>
+  <br><i><%= flash[:notice] %></i>
+<% else %>
+  <p>
+    <% if @flights.empty? %>
+      No results match your search. Please try again.
+    <% else %>
+      <%= form_with url: 'bookings/new', method: :get do |f| %>
+        <strong><%= @flights.first.drop_down_date %></strong><br>
+        <%= "Number of passengers: #{ @passenger_count }" %><br>
+        Flights available:<br><br>
+        <% @flights.each do |flight| %>
+          <%= f.radio_button :flight_id, flight.id %>
+          <%= flight.formatted_date.to_time.strftime('%H:%M') %><br>
+          <%= "Departs: #{flight.departure.city}" %><br>
+          <%= "Arrives: #{flight.arrival.city}" %><br>
+          <%= "Duration: #{flight.duration} min" %><br><br>
+          <%= f.hidden_field :passenger_count, value: @passenger_count %>
+        <% end %>
+        <%= f.submit "Book flight" %>
       <% end %>
-      <%= f.submit "Book flight" %>
     <% end %>
-  <% end %>
-</p>
+  </p>
+<% end %>

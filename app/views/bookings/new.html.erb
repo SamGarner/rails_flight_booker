@@ -1,3 +1,7 @@
+<% if flash[:error] %>
+  <%= flash[:error] %>
+<% end %>
+
 <i><h3>New Booking:</h3></i>
 <p>
   <%= "Departing on: #{@booking_flight.drop_down_date}" %><br>
