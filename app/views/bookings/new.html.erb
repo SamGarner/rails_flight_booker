@@ -1,0 +1,25 @@
+<i><h3>New Booking:</h3></i>
+<p>
+  <%= "Departing on: #{@booking_flight.drop_down_date}" %><br>
+  <%= "From: #{@booking_flight.departure.city}" %><br>
+  <%= "To: #{@booking_flight.arrival.city}" %><br>
+  <%= "Duration: #{@booking_flight.duration} min" %><br><br>
+</p>
+
+<h5>Passenger Details:</h5>
+
+<%= form_with model: @booking do |f| %>
+  <%# n = 1 %>
+  <%# @passenger_count.to_i.times do %>
+    <%# f.fields_for "booking[passenger#{n}]" do |passenger| %>
+    <%= f.fields_for :passengers do |passenger| %>
+      <%= passenger.label :name, "Name:" %>
+      <%= passenger.text_field :name %>
+      <%= passenger.label :email, "Email address:" %>
+      <%= passenger.email_field :email %><br><br>
+    <% end %>
+    <%# n += 1 %>
+  <%# end %>
+  <%= f.hidden_field :flight_id, value: @booking_flight_id %> 
+  <%= f.submit "Submit passenger details" %>
+<% end %>  
