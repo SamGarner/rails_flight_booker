@@ -1,0 +1,11 @@
+<% if flash[:success] %>
+  <%= flash[:success] %>
+<% end %>
+
+<p>
+  <strong><%= "Booking ID: #{@new_booking.id}" %></strong><br>
+  Confirmed Passengers:<br>
+  <% @new_booking.passengers.each do |pax| %>
+    <%= pax.name %><br>
+  <% end %>
+</p>
