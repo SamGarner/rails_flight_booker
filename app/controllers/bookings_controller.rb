@@ -18,7 +18,10 @@ class BookingsController < ApplicationController
     @new_booking = Booking.new(whitelisted_booking_params)
     if @new_booking.save
       flash.now[:success] = 'Booking complete. Enjoy your trip!'
+      # @passengers = Passenger.find_by booking_id: @new_booking.id #only gets first match :()
+      @passengers = Passenger.where(booking_id: @new_booking.id)
       render :show
+      PassengerMailer.with(passengers: @passengers, confirmation_number: @new_booking.id).confirmation_email.deliver_now
     else
       @booking_flight_id = params[:booking][:flight_id]
       @booking_flight = Flight.find(params[:booking][:flight_id])
